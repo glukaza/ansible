@@ -1,0 +1,8 @@
+---
+- name: be sure firewalld is running and enabled
+  service: name=firewalld state=running enabled=true
+
+- name: enable http(80) to public
+  command: firewall-cmd --permanent --zone=public --add-service=http
+  notify:
+  - restart firewalld.service
